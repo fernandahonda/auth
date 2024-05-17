@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find_by({ "id" => params["id"] })
+    @current_user = User.find_by({ "id" => session["user_id"] })
   end
 
   def new
@@ -14,5 +15,7 @@ class UsersController < ApplicationController
     @user["password"] = BCrypt::Password.create(params["password"])
     @user.save
     redirect_to "/users/#{@user["id"]}"
+
+    @current_user = User.find_by({ "id" => session["user_id"] })
   end
 end

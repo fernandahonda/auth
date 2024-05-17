@@ -4,10 +4,12 @@ class ContactsController < ApplicationController
     @contact = Contact.find_by({ "id" => params["id"] })
     @company = Company.find_by({ "id" => @contact["company_id"] })
     @activities = Activity.where({ "contact_id" => @contact["id"] })
+    @current_user = User.find_by({ "id" => session["user_id"] })
   end
 
   def new
     @company = Company.find_by({ "id" => params["company_id"] })
+    @current_user = User.find_by({ "id" => session["user_id"] })
   end
 
   def create
@@ -24,6 +26,7 @@ class ContactsController < ApplicationController
   def edit
     @contact = Contact.find_by({ "id" => params["id"] })
     @company = Company.find_by({ "id" => @contact["company_id"] })
+    @current_user = User.find_by({ "id" => session["user_id"] })
   end
   
   def update

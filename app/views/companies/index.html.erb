@@ -1,11 +1,17 @@
-<h1>My CRM</h1>
- 
- <ul>
-   <% for company in @companies %>
-    <li>
-      <a href="/companies/<%= company["id"] %>"><%= company["name"] %></a>
-    </li>
-   <% end %>
-</ul>
+<% if @current_user %>
 
-<p><a href="/companies/new">Create a new company</a></p>
+  <h1>My CRM</h1>
+  
+  <ul>
+    <% for company in @companies %>
+      <li>
+        <a href="/companies/<%= company["id"] %>"><%= company["name"] %></a>
+      </li>
+    <% end %>
+  </ul>
+
+  <p><a href="/companies/new">Create a new company</a></p>
+  <p><a href="/tasks">Go to "DO the TO DOs"</a></p>
+<% else %>
+  <p>NOTHING TO SEE HERE!</p>
+<% end %>
